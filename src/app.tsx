@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useState, type ReactNode } from 'react';
 
 function delay<T>(fn: () => Promise<T>): Promise<T> {
   return new Promise((resolve) => {
@@ -10,6 +10,10 @@ function delay<T>(fn: () => Promise<T>): Promise<T> {
 
 const LazyContent = lazy(() => delay(() => import('./content')));
 
+function MySuspenseBoundary({children}: {children: ReactNode}) {
+
+}
+
 export function App() {
   const [isShowingLazy, setIsShowingLazy] = useState<boolean>(false);
 
@@ -17,8 +21,10 @@ export function App() {
     <div className="p-4">
       <span className="text-slate-800 font-bold text-left">(App boundary)</span>
       <div className="flex flex-col gap-4 text-center p-4 border-2 rounded border-slate-400">
-        <div className="bg-slate-300 rounded p-2 h-16">
-          <span className="invisible">Some non-lazy loaded content</span>
+        <div className="flex h-16 gap-4">
+          <div className="bg-slate-300 rounded flex-1" />
+          <div className="bg-slate-300 rounded flex-1" />
+          <div className="bg-slate-300 rounded flex-1" />
         </div>
 
         <button
