@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, type ReactNode } from 'react';
+import { lazy, Suspense, useState, } from 'react';
 
 function delay<T>(fn: () => Promise<T>): Promise<T> {
   return new Promise((resolve) => {
@@ -10,9 +10,6 @@ function delay<T>(fn: () => Promise<T>): Promise<T> {
 
 const LazyContent = lazy(() => delay(() => import('./content')));
 
-function MySuspenseBoundary({children}: {children: ReactNode}) {
-
-}
 
 export function App() {
   const [isShowingLazy, setIsShowingLazy] = useState<boolean>(false);
